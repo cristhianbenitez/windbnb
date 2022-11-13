@@ -9,7 +9,10 @@ export const Header = () => {
   const [location, setLocation] = React.useState('');
   const [guests, setGuests] = React.useState('');
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
-  const toggleDropdown = () => setIsDropdownOpen(true);
+  const [isLocationFocused, SetIsLocationClicked] = React.useState(false);
+
+  const openDropdown = () => setIsDropdownOpen(true);
+  const closeDropdown = () => setIsDropdownOpen(false);
 
   return (
     <header className={styles.header}>
@@ -17,7 +20,9 @@ export const Header = () => {
       <SearchBar
         location={location}
         guests={guests}
-        openDropdown={toggleDropdown}
+        openDropdown={openDropdown}
+        SetIsLocationClicked={SetIsLocationClicked}
+        // focusGuests={focusGuests}
       />
       {isDropdownOpen && (
         <DropdownSearch
@@ -25,7 +30,9 @@ export const Header = () => {
           setLocation={setLocation}
           guests={guests}
           setGuests={setGuests}
-          setIsOpen={setIsDropdownOpen}
+          closeDropdown={closeDropdown}
+          isLocationFocused={isLocationFocused}
+          isDropdownOpen={isDropdownOpen}
         />
       )}
     </header>

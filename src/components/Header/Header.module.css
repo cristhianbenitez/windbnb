@@ -1,4 +1,6 @@
 .header {
+  font-family: 'Mulish', sans-serif;
+
   display: flex;
   justify-content: space-between;
   width: 100%;

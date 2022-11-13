@@ -4,7 +4,12 @@ import { ReactComponent as SearchIcon } from 'assets/search-icon.svg';
 
 import styles from './SearchBar.module.css';
 
-export const SearchBar = ({ openDropdown, location, guests }) => {
+export const SearchBar = ({
+  openDropdown,
+  location,
+  guests,
+  SetIsLocationClicked
+}) => {
   return (
     <div className={styles.searchbar}>
       <div className={styles.searchbar__input} onClick={openDropdown}>
@@ -15,6 +20,9 @@ export const SearchBar = ({ openDropdown, location, guests }) => {
           placeholder="Add location"
           value={location}
           readOnly
+          onClick={() => {
+            SetIsLocationClicked(true);
+          }}
         />
       </div>
       <div className={styles.searchbar__input} onClick={openDropdown}>
