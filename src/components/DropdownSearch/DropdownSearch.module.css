@@ -105,6 +105,10 @@
   padding: 0;
 }
 
+.resultsList_icon {
+  padding-right: 0.625rem;
+}
+
 .resultsList > li {
   padding-bottom: 2.25rem;
 }

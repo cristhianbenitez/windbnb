@@ -2,6 +2,8 @@ import React from 'react';
 import useOnClickOutside from 'use-onclickoutside';
 
 import { ReactComponent as SearchIcon } from 'assets/search-icon.svg';
+import { ReactComponent as LocationIcon } from 'assets/location.svg';
+
 import { animated, useSpring } from 'react-spring';
 
 import styles from './DropdownSearch.module.css';
@@ -86,10 +88,22 @@ export const DropdownSearch = ({
           </div>
 
           <ul className={styles.resultsList}>
-            <li>Oulu, Finland</li>
-            <li>Helsinki, Finland</li>
-            <li>Vaasa, Finland</li>
-            <li>Turku, Finland</li>
+            <li>
+              <LocationIcon className={styles.resultsList_icon} />
+              Oulu, Finland
+            </li>
+            <li>
+              <LocationIcon className={styles.resultsList_icon} />
+              Helsinki, Finland
+            </li>
+            <li>
+              <LocationIcon className={styles.resultsList_icon} />
+              Vaasa, Finland
+            </li>
+            <li>
+              <LocationIcon className={styles.resultsList_icon} />
+              Turku, Finland
+            </li>
           </ul>
 
           <button
