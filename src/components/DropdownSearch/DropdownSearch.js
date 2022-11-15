@@ -43,47 +43,65 @@ export const DropdownSearch = ({
   return (
     <animated.div style={overlayAnimation} className={styles.overlay}>
       <animated.div style={props} className={styles.dropdown} ref={ref}>
-        <form className={styles.searchbar} onSubmit={() => closeDropdown()}>
-          <div className={styles.searchbar__input}>
-            <label htmlFor="location">Location</label>
-            <input
-              type="text"
-              name="location"
-              id="location"
-              placeholder="Add location"
-              value={location}
-              onChange={onChangeLocation}
-              autoFocus={isLocationFocused}
-            />
-          </div>
-          <div className={styles.searchbar__input}>
-            <label htmlFor="guests">Guests</label>
-            <input
-              type="text"
-              name="guests"
-              id="guests"
-              placeholder="Add guests"
-              maxLength={3}
-              value={guests}
-              onChange={onChangeGuests}
-              autoFocus={!isLocationFocused}
-            />
+        <form
+          className={styles.dropdown__container}
+          onSubmit={() => closeDropdown()}
+        >
+          <div className={styles.searchbar}>
+            <div className={styles.searchbar__input}>
+              <label htmlFor="location">Location</label>
+              <input
+                type="text"
+                name="location"
+                id="location"
+                placeholder="Add location"
+                value={location}
+                onChange={onChangeLocation}
+                autoFocus={isLocationFocused}
+              />
+            </div>
+            <div className={styles.searchbar__input}>
+              <label htmlFor="guests">Guests</label>
+              <input
+                type="text"
+                name="guests"
+                id="guests"
+                placeholder="Add guests"
+                maxLength={3}
+                value={guests}
+                onChange={onChangeGuests}
+                autoFocus={!isLocationFocused}
+              />
+            </div>
+            {/* Not visible in Mobile */}
+            <button
+              className={`${styles.searchbar__btn} ${styles.desktop_only}`}
+              type="submit"
+            >
+              <div className={styles.searchbar__btn__icon}>
+                <SearchIcon />
+              </div>
+              <span>Search</span>
+            </button>
           </div>
 
-          <button className={styles.searchbar__btn} type="submit">
+          <ul className={styles.resultsList}>
+            <li>Oulu, Finland</li>
+            <li>Helsinki, Finland</li>
+            <li>Vaasa, Finland</li>
+            <li>Turku, Finland</li>
+          </ul>
+
+          <button
+            className={`${styles.searchbar__btn} ${styles.mobile_only}`}
+            type="submit"
+          >
             <div className={styles.searchbar__btn__icon}>
               <SearchIcon />
             </div>
             <span>Search</span>
           </button>
         </form>
-
-        <ul className={styles.resultsList}>
-          <li>Oulu, Finland</li>
-          <li>Helsinki, Finland</li>
-          <li>Vaasa, Finland</li>
-          <li>Turku, Finland</li>
-        </ul>
       </animated.div>
     </animated.div>
   );
