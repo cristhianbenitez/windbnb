@@ -2,6 +2,7 @@ import React from 'react';
 import useOnClickOutside from 'use-onclickoutside';
 
 import { ReactComponent as SearchIcon } from 'assets/search-icon.svg';
+import { animated, useSpring } from 'react-spring';
 
 import styles from './DropdownSearch.module.css';
 
@@ -28,9 +29,20 @@ export const DropdownSearch = ({
     closeDropdown();
   });
 
+  const props = useSpring({
+    to: { opacity: 1, y: 0 },
+    from: { opacity: 0, y: -100 },
+    delay: 250
+  });
+
+  const overlayAnimation = useSpring({
+    to: { opacity: 1 },
+    from: { opacity: 0 }
+  });
+
   return (
-    <div className={styles.overlay}>
-      <div className={styles.dropdown} ref={ref}>
+    <animated.div style={overlayAnimation} className={styles.overlay}>
+      <animated.div style={props} className={styles.dropdown} ref={ref}>
         <form className={styles.searchbar} onSubmit={() => closeDropdown()}>
           <div className={styles.searchbar__input}>
             <label htmlFor="location">Location</label>
@@ -72,7 +84,7 @@ export const DropdownSearch = ({
           <li>Vaasa, Finland</li>
           <li>Turku, Finland</li>
         </ul>
-      </div>
-    </div>
+      </animated.div>
+    </animated.div>
   );
 };
