@@ -14,7 +14,7 @@ export const DropdownSearch = ({
   guests,
   setGuests,
   closeDropdown,
-  isLocationFocused
+  isLocationFocused,
 }) => {
   const ref = React.useRef(null);
 

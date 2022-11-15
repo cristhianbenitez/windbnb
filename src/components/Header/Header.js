@@ -32,7 +32,6 @@ export const Header = () => {
           setGuests={setGuests}
           closeDropdown={closeDropdown}
           isLocationFocused={isLocationFocused}
-          isDropdownOpen={isDropdownOpen}
         />
       )}
     </header>
