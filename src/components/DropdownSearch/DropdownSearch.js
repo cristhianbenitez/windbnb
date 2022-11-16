@@ -15,6 +15,8 @@ export const DropdownSearch = ({
   setGuests,
   closeDropdown,
   isLocationFocused,
+  stays,
+  setResults
 }) => {
   const ref = React.useRef(null);
 
@@ -31,6 +33,26 @@ export const DropdownSearch = ({
     closeDropdown();
   });
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const filteredResults = stays.filter(
+      ({ city, country, maxGuests }) =>
+        `${city}, ${country}` === location && guests <= maxGuests
+    );
+
+    setResults(filteredResults);
+    closeDropdown();
+  };
+
+  const cleanArrOfStays = stays.filter(
+    (stay, index, arr) => index === arr.findIndex((s) => s.city === stay.city)
+  );
+
+  const filteredLocations = cleanArrOfStays.filter((stay) => {
+    const stayLocation = `${stay.city},${stay.country}`;
+    return stayLocation.toLowerCase().includes(location.toLowerCase());
+  });
+
   const props = useSpring({
     to: { opacity: 1, y: 0 },
     from: { opacity: 0, y: -100 },
@@ -45,10 +67,7 @@ export const DropdownSearch = ({
   return (
     <animated.div style={overlayAnimation} className={styles.overlay}>
       <animated.div style={props} className={styles.dropdown} ref={ref}>
-        <form
-          className={styles.dropdown__container}
-          onSubmit={() => closeDropdown()}
-        >
+        <form className={styles.dropdown__container} onSubmit={onSubmit}>
           <div className={styles.searchbar}>
             <div className={styles.searchbar__input}>
               <label htmlFor="location">Location</label>
@@ -88,22 +107,13 @@ export const DropdownSearch = ({
           </div>
 
           <ul className={styles.resultsList}>
-            <li>
-              <LocationIcon className={styles.resultsList_icon} />
-              Oulu, Finland
-            </li>
-            <li>
-              <LocationIcon className={styles.resultsList_icon} />
-              Helsinki, Finland
-            </li>
-            <li>
-              <LocationIcon className={styles.resultsList_icon} />
-              Vaasa, Finland
-            </li>
-            <li>
-              <LocationIcon className={styles.resultsList_icon} />
-              Turku, Finland
-            </li>
+            {location.length > 0 &&
+              filteredLocations.map(({ city, country }) => (
+                <li onClick={() => setLocation(`${city}, ${country}`)}>
+                  <LocationIcon className={styles.resultsList_icon} />
+                  {city}, {country}
+                </li>
+              ))}
           </ul>
 
           <button

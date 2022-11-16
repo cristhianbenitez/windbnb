@@ -5,9 +5,14 @@ import { SearchBar, DropdownSearch } from 'components';
 import { ReactComponent as Logo } from 'assets/logo.svg';
 import styles from './Header.module.css';
 
-export const Header = () => {
-  const [location, setLocation] = React.useState('');
-  const [guests, setGuests] = React.useState('');
+export const Header = ({
+  location,
+  setLocation,
+  guests,
+  setGuests,
+  stays,
+  setResults
+}) => {
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
   const [isLocationFocused, SetIsLocationClicked] = React.useState(false);
 
@@ -22,7 +27,6 @@ export const Header = () => {
         guests={guests}
         openDropdown={openDropdown}
         SetIsLocationClicked={SetIsLocationClicked}
-        // focusGuests={focusGuests}
       />
       {isDropdownOpen && (
         <DropdownSearch
@@ -32,6 +36,8 @@ export const Header = () => {
           setGuests={setGuests}
           closeDropdown={closeDropdown}
           isLocationFocused={isLocationFocused}
+          stays={stays}
+          setResults={setResults}
         />
       )}
     </header>
