@@ -14,9 +14,11 @@ function App() {
       <main className={styles.main}>
         <h2>Stays in Finland</h2>
 
-        {stays.map((props, index) => (
-          <StayCard props={props} key={`${id}-${index}`} />
-        ))}
+        <section className={styles.main__grid}>
+          {stays.map((props, index) => (
+            <StayCard props={props} key={`${id}-${index}`} />
+          ))}
+        </section>
       </main>
     </div>
   );
