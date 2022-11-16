@@ -11,7 +11,6 @@
 @media (max-width: 550px) {
   .header {
     display: block;
-    max-width: 350px;
   }
 
   .header__logo {

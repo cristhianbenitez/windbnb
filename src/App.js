@@ -12,7 +12,10 @@ function App() {
       <Header />
 
       <main className={styles.main}>
-        <h2>Stays in Finland</h2>
+        <div className={styles.main__heading}>
+          <h2>Stays in Finland</h2>
+          <span>12+ stays</span>
+        </div>
 
         <section className={styles.main__grid}>
           {stays.map((props, index) => (

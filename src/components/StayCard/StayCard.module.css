@@ -4,20 +4,18 @@
 .stayCard_container {
   max-width: 395px;
   max-height: 350px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  margin: auto;
 }
 
 .stayCard__imageContainer {
   border-radius: 24px;
   overflow: hidden;
   margin-bottom: 1.25rem;
+  height: 270px;
 }
 
 .stayCard__imageContainer img {
-  max-height: 270px;
+  height: 270px;
   object-fit: cover;
 }
 
@@ -25,6 +23,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 1.25rem;
+  max-height: 18px;
 }
 
 .stayCard__info__superhost {
@@ -64,4 +63,15 @@
   margin: 0;
   font-weight: 600;
   color: #333333;
+  font-size: 1rem;
+}
+
+@media (max-width: 550px) {
+  .stayCard__title {
+    font-size: 0.75 rem;
+  }
+
+  .stayCard__info__superhost {
+    font-size: 0.625rem;
+  }
 }
